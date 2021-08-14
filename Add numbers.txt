@@ -1,0 +1,69 @@
+
+import java.util.Arrays;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        System.out.println(add("100","2"));
+    }
+
+    public static String add(String a, String b) {
+        a = eliminateLeadingZeros(a);
+        b = eliminateLeadingZeros(b);
+        int i = a.length();
+        int j = b.length();
+        int carry = 0, result;
+        int k = Math.max(i, j) + 1;
+        int[] out = new int[k];
+        while (i > 0 && j > 0) {
+            result = (a.charAt(i - 1) - '0') + (b.charAt(j - 1) - '0') + carry;
+            carry = result / 10;
+            result = result % 10;
+            out[k - 1] = result;
+            k = k - 1;
+            i = i - 1;
+            j = j - 1;
+        }
+        if (i != 0) {
+            while (i > 0) {
+                result = a.charAt(i - 1) - '0' + carry;
+                carry = result / 10;
+                result = result % 10;
+                out[k - 1] = result;
+                k = k - 1;
+                i = i - 1;
+            }
+        }
+        if (j != 0) {
+            while (j > 0) {
+                result = b.charAt(j - 1) - '0' + carry;
+                carry = result / 10;
+                result = result % 10;
+                out[k - 1] = result;
+                k = k - 1;
+                j = j - 1;
+            }
+        }
+        int pos = 0;
+        if (carry != 0) {
+            out[0] = carry;
+        }
+        while (out[pos] == 0) {
+            pos++;
+        }
+        StringBuilder outputString = new StringBuilder();
+        for (; pos < out.length; pos++) {
+            outputString.append(out[pos]);
+        }
+        return outputString.toString();
+    }
+
+    private static String eliminateLeadingZeros(String a) {
+        int i = 0;
+        int n = a.length();
+        while (i < n && a.charAt(i) - '0' == 0) {
+            i++;
+        }
+        return a.substring(i);
+    }
+}

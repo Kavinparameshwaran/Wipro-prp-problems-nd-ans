@@ -1,0 +1,42 @@
+import java.util.*;
+public class LeastFrequesntDigit {
+	static void LFD(int in1, int in2,int in3, int in4)
+	{
+		String xx=in1+""+in2+""+in3+""+in4+"";
+		int a[][]=new int[10][2];
+		for(int i=0;i<10;i++)
+		{  int count =0;
+			for (int j=0;j<xx.length();j++)
+	   			{ int r=0;
+				 r=Integer.parseInt(xx.charAt(j)+"");
+				if(i==r)
+				{
+					count++;
+				}
+			}
+			a[i][1]=count;
+		}
+		ArrayList <Integer>al=new ArrayList<Integer>();
+		ArrayList <Integer>al1=new ArrayList<Integer>();
+		TreeSet ts=new TreeSet<Integer>();
+		for(int i=0;i<10;i++) {
+			if(a[i][1]!=0) {
+				al.add(a[i][1]);
+			}
+		}
+		System.out.println(al);
+		int com=Collections.min(al);
+		System.out.println(com);
+		for(int i=0;i<10;i++)
+		{
+		if(com==a[i][1])
+		{
+			al1.add(i);
+		}
+		}
+		System.out.println(Collections.min(al1));
+	}
+	public static void main(String[] args) {
+		LFD(1203,7624,2046,1052);
+	}
+}

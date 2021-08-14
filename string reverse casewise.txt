@@ -1,0 +1,115 @@
+
+import java.util.Scanner;
+
+public class SwapCase {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String in = sc.nextLine();
+        int stringCase = sc.nextInt();
+        String out1;
+        if (stringCase == 0) {
+            out1 = case0(in);
+        } else if (stringCase == 1) {
+            out1 = case1(in);
+        } else {
+            out1 = case2(in);
+        }
+        System.out.println(out1);
+    }
+
+    static String case0(String a) {
+        StringBuilder out = new StringBuilder();
+        String[] temp = a.split(" ");
+        for (String s : temp) {
+            out.append(new StringBuilder(s).reverse()).append(" ");
+        }
+        return out.toString().trim();
+    }
+
+    static String case1(String a) {
+        StringBuilder out = new StringBuilder();
+        String[] temp = a.split(" ");
+        for (String s : temp) {
+            char[] ch = s.toCharArray();
+            int n = s.length();
+            char presentChar;
+            for (int i = 0; i < n; i++) {
+                presentChar = ch[n - i - 1];
+                if (Character.isLetter(ch[i])) {
+                    if (Character.isUpperCase(ch[i])) {
+                        presentChar = Character.toUpperCase(presentChar);
+                    } else {
+                        presentChar = Character.toLowerCase(presentChar);
+                    }
+                }
+                out.append(presentChar);
+            }
+            out.append(" ");
+        }
+        return out.toString().trim();
+    }
+
+    static String case2(String a) {
+        StringBuilder out = new StringBuilder();
+        String[] temp = a.split(" ");
+        for (String s : temp) {
+            char[] ch = s.toCharArray();
+            int n = s.length();
+            char presentChar;
+            for (int i = 0; i < n; i++) {
+                presentChar = ch[n - i - 1];
+                if (Character.isLetter(presentChar)) {
+                    if (Character.isUpperCase(presentChar)) {
+                        presentChar = Character.toLowerCase(presentChar);
+                    } else {
+                        presentChar = Character.toUpperCase(presentChar);
+                    }
+                }
+                out.append(presentChar);
+            }
+            out.append(" ");
+        }
+        return out.toString().trim();
+    }
+}
+
+
+
+***********************************************************************************************************
+
+
+import java.util.Scanner;
+
+public class SwapCase1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String sen = sc.nextLine();
+        strDistReplace(sen);
+    }
+
+    public static void strDistReplace(String a) {
+
+        String[] strarr = a.split(" ");
+        StringBuilder out = new StringBuilder();
+        for (String s : strarr) {
+            int l = s.length();
+            for (int i = 0; i < l; i++) {
+                out.append(s.charAt(i));
+                if (i != l - 1) {
+                    char c;
+                    if (Character.isLetter(s.charAt(i)) && Character.isLetter(s.charAt(i + 1))) {
+                        int n = (s.charAt(i) - 96 + s.charAt(i + 1) - 96) % 26;
+                        if (n == 0) {
+                            c = '0';
+                        } else {
+                            c = (char) (n + 96);
+                        }
+                        out.append(c);
+                    }
+                }
+            }
+            out.append(" ");
+        }
+        System.out.println(out.toString().trim());
+    }
+}    

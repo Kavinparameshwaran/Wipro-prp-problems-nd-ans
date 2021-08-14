@@ -1,0 +1,94 @@
+
+import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] input = new int[n + 1];
+        for (int i = 0; i < n; i++) {
+            input[i] = sc.nextInt();
+        }
+        input[n] = Integer.MAX_VALUE;
+        int currentMax = 0, overallMax = 0, numOfArray = 0;
+        for (int i = 0; i < input.length - 1; i++) {
+            if (input[i] > input[i + 1]) {
+                currentMax = currentMax + 1;
+                if (currentMax > overallMax) {
+                    overallMax = currentMax;
+                }
+            } else {
+                if (currentMax != 0) {
+                    numOfArray++;
+                }
+                currentMax = 0;
+            }
+            System.out.println(input[i] + " " + currentMax);
+        }
+        System.out.println("Number of non decreasing sequence:" + numOfArray);
+        if (overallMax != 0) {
+            overallMax++;
+        }
+        System.out.println("OverallMax:" + overallMax);
+
+    }
+
+}
+
+
+*************************************************************
+
+
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class HelloWorld {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      String s=sc.nextLine();
+      int n=sc.nextInt();
+      reverseWords_andCase(s,n);    
+    }
+    public static void reverseWords_andCase(String Sentence,int caseoption)
+    {
+      String strarr[]=Sentence.split(" ");
+      int len=strarr.length;
+      if(caseoption==0)
+      {
+        String str1="";
+        for(String s:strarr)
+        {
+          StringBuilder sb=new StringBuilder(s);
+          sb.reverse();
+          str1+=sb.toString()+" ";
+        }
+        System.out.println(str1.trim());
+      }
+      if(caseoption==1)
+      {
+        String str2="";
+        for(String s1:strarr)
+        {
+         StringBuilder sb1=new StringBuilder(s1);
+         if(!StringUtils.isAlphanumeric(sb1.toString()))
+         {
+           StringBuilder sb2=new StringBuilder(s1);
+           sb2.reverse();
+           str2+=sb2.toString()+" ";
+         }
+         else{
+             for(int i = s1.length()-1; i>=0; i--){
+               if(i==s1.length()-1 || i==0)
+               {
+                 if(Character.isUpperCase(s1.charAt(s1.length()-1)) && Character.isLowerCase((s1.charAt(0)))
+                 {
+                   str1+=Character.toUpperCase(s1.charAt(i));
+                 }
+               }
+               if(i==0)
+            reverse = reverse + source.charAt(i);
+         }
+        }
+      }
+    }
+}

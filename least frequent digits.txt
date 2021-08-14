@@ -1,0 +1,42 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CountNumbers {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        addNumbers(map, a);
+        addNumbers(map, b);
+        addNumbers(map, c);
+        int outNum = -1, min = Integer.MAX_VALUE;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            int times = entry.getValue();
+            if (times < min) {
+                min = times;
+                outNum = entry.getKey();
+            } else if (times == min && entry.getKey() < outNum) {
+                outNum = entry.getKey();
+            }
+        }
+        System.out.println("Number " + outNum + " Times" + min);
+
+    }
+
+    static void addNumbers(HashMap<Integer, Integer> map, int num) {
+        while (num > 0) {
+            int temp = num % 10;
+            if (map.containsKey(temp)) {
+                map.put(temp, map.get(temp) + 1);
+            } else {
+                map.put(temp, 1);
+            }
+            num = num / 10;
+        }
+    }
+
+}

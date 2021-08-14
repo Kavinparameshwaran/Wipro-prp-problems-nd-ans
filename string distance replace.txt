@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class SwapCase1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String sen = sc.nextLine();
+        strDistReplace(sen);
+    }
+
+    public static void strDistReplace(String a) {
+
+        String[] strarr = a.split(" ");
+        StringBuilder out = new StringBuilder();
+        for (String s : strarr) {
+            int l = s.length();
+            for (int i = 0; i < l; i++) {
+                out.append(s.charAt(i));
+                if (i != l - 1) {
+                    char c;
+                    if (Character.isLetter(s.charAt(i)) && Character.isLetter(s.charAt(i + 1))) {
+                        int n = (s.charAt(i) - 96 + s.charAt(i + 1) - 96) % 26;
+                        if (n == 0) {
+                            c = '0';
+                        } else {
+                            c = (char) (n + 96);
+                        }
+                        out.append(c);
+                    }
+                }
+            }
+            out.append(" ");
+        }
+        System.out.println(out.toString().trim());
+    }
+}
