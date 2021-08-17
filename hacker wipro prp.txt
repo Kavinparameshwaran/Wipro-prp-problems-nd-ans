@@ -1,0 +1,103 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static void findpass(int n1,int n2,int n3,int n4,int n5)
+    {
+        int arr[]={n1,n2,n3,n4,n5};
+        int arrlen=arr.length;
+        int fre[]=new int[10];
+        ArrayList<Integer> list=new ArrayList<>();
+        for(int num:arr)
+        {
+            Arrays.fill(fre,0);
+            int nbr=num;
+            while(nbr!=0)
+            {
+                int dig=nbr%10;
+                fre[dig]++;
+                nbr/=10;
+            }
+            nbr=num;
+            int flag=1;
+            for(int i=0;i<10;i++)
+            {
+                if(fre[i]!=0)
+                {
+                for(int j=i+1;j<10;j++)
+                {
+                    if(fre[j]>0)
+                    {
+                    if(fre[i]==fre[j]) 
+                    {
+                        flag=0;
+                        break;
+                    }
+                    }
+                }
+                break;                
+                }
+            }
+            if(flag==0) list.add(nbr);
+        }
+        int s=0;
+        for(int ele:list)
+        {
+            s+=ele;
+        }
+        System.out.println(s);
+        
+    }
+
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+        int n1=sc.nextInt();
+        int n2=sc.nextInt();
+        int n3=sc.nextInt();
+        int n4=sc.nextInt();
+        int n5=sc.nextInt();
+        findpass(n1,n2,n3,n4,n5);
+    }
+}
+
+
+
+***************************************************************************************
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static void findkey(int n1,int n2,int n3)
+    {
+        int arr[]={n1,n2,n3};
+        ArrayList<Integer> list=new ArrayList<Integer>();
+        int minsum=0;
+        int maxsum=0;
+        for(int num:arr)
+        {
+            while(num!=0)
+            {
+                int dig=num%10;
+                list.add(dig);
+                num/=10;
+            }
+            minsum+=Collections.min(list);
+            maxsum+=Collections.max(list);
+            list.clear();
+        }
+        int key=maxsum-minsum;
+        System.out.println(key);
+    }
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc=new Scanner(System.in);
+        int n1=sc.nextInt();
+        int n2=sc.nextInt();
+        int n3=sc.nextInt();
+        findkey(n1,n2,n3);
+        
+        
+    }
+}

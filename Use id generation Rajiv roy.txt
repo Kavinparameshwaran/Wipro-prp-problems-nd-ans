@@ -1,0 +1,62 @@
+package kavin;
+
+import java.sql.SQLOutput;
+import java.util.Scanner;
+
+public class Program5 {
+    public static void finduid(String fname,String lname,int pin,int n)
+    {
+     int l1=fname.length();
+     int l2=lname.length();
+     String sn,ln;
+     if(l1<l2)
+     {
+         sn=fname;
+         ln=lname;
+     }
+     else if(l2<l1)
+     {
+         sn=lname;
+         ln=fname;
+     }
+     else
+     {
+         if(fname.compareTo(lname)<0)
+         {
+             sn=fname;
+             ln=lname;
+         }
+         else
+         {
+             sn=lname;
+             ln=fname;
+         }
+     }
+     String stpin=Integer.toString(pin);
+     int len=stpin.length();
+     String out=ln.charAt(0)+sn+stpin.charAt(n-1)+stpin.charAt(len-n);
+     int len1=out.length();
+     for(int i=0;i<len1;i++)
+     {
+         if(Character.isAlphabetic(out.charAt(i)))
+         {
+             if(Character.isUpperCase(out.charAt(i)))
+                 System.out.print(Character.toLowerCase(out.charAt(i)));
+             else
+                 System.out.print(Character.toUpperCase(out.charAt(i)));
+         }
+         else {
+             System.out.print(out.charAt(i));
+         }
+     }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String fname=sc.nextLine();
+        String lname=sc.nextLine();
+        int pin=sc.nextInt();
+        int n=sc.nextInt();
+        finduid(fname,lname,pin,n);
+
+    }
+}

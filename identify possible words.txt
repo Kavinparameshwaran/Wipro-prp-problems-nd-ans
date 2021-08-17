@@ -1,0 +1,75 @@
+String arr[]=input2.split(":");
+		int l=arr.length;
+		int c=0;
+		String out="";
+		int len=input1.length();
+		for(String str:arr)
+		{
+			if(str.length()==len)
+			{
+				int cnt=0;
+				int flag=0;
+				int haf = input1.indexOf('_');
+				for(int i=0;i<len;i++)
+				{
+					if(i==haf)
+					{
+						continue;
+					}
+					else if(Character.toLowerCase(input1.charAt(i))==Character.toLowerCase(str.charAt(i)))
+					{
+						cnt++;
+					}
+					else
+					{
+						flag=1;
+					}
+				}
+			if(flag==1) c++;
+			if(cnt==(len-1))
+			{
+				out=out+str+":";
+			}
+			}
+			else
+			{
+				c++;
+			}
+		}
+		if(c==l)
+		{
+			String out1="ERROR-009";
+			return out1;
+		}
+		else{
+		int lengt=out.length();
+		out=out.substring(0,lengt-1);
+		return out.toUpperCase();
+		}
+**************************************************************************************************
+
+String[] arr = input2.split(":");
+int len = input1.length();
+String out = "";
+int underscorePosition = input1.indexOf('_');
+String firstPart = input1.substring(0, underscorePosition);
+String secondPart = input1.substring(underscorePosition + 1, len);
+for (String str : arr) {
+    if (str.length() == len) {
+        String tempFirstPart = str.substring(0, underscorePosition);
+        String tempSecondPart = str.substring(underscorePosition + 1, len);
+        boolean isFirstPartEqual = firstPart.equalsIgnoreCase(tempFirstPart);
+        boolean isSecondPartEqual = secondPart.equalsIgnoreCase(tempSecondPart);
+        if (isFirstPartEqual && isSecondPartEqual) {
+            if (out.equals("")) {
+                out = out + str.toUpperCase();
+            } else {
+                out = out + ":" + str.toUpperCase();
+            }
+        }
+    }
+}
+if (out.isEmpty()) {
+    out = "ERROR-009";
+}
+System.out.println(out);
